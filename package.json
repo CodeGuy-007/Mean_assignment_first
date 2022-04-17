@@ -1,0 +1,25 @@
+// This file lists all the dependencies and meta data required to run the project
+// While creating a new node application using npm or yarn
+// all the values in pakage.json can be set to default by using --yes flag
+{
+  "name": "demoapp",
+  "version": "1.0.0",
+  "description": "learn the installation process",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "test"
+  },
+  "keywords": [
+    "MEAN",
+    "Mongo",
+    "Express",
+    "Angular",
+    "Nodejs"
+  ],
+  "author": "Akshat",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
