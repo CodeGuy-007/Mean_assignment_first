@@ -14,30 +14,37 @@ const routes = require("./routes");
 
 // Adding Bootstrap css path
 app.use(
-    "/css",
-    express.static(path.join(__dirname, "node_modules/bootstrap/dist/css"))
-  );
-  // Adding Bootstrap js path
-  app.use(
-    "/js",
-    express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
-  );
-  // Adding Jquery path in node_modules
-  app.use(
-    "/js",
-    express.static(path.join(__dirname, "node_modules/jquery/dist"))
-  );
-  
-// this is one of the two methods used in routing
-// the other one is called post
+"/css",
+express.static(path.join(__dirname, "node_modules/bootstrap/dist/css"))
+);
+// Adding Bootstrap js path
+app.use(
+"/js",
+express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
+);
+// Adding Jquery path in node_modules
+app.use(
+"/js",
+express.static(path.join(__dirname, "node_modules/jquery/dist"))
+);
+
+// this is one of the methods used in routing
+// the other important method is called post
 // this app.get() handles get request
 // it takes two parameters first one is the path
 // "/" denotes homepage 
 // the second parameter is the function which also takes
 // two parameters one is request and resopnse
 // in the function we are calling the send method of response 
-// This display the message in the homepage
-// app.get('/', (req, res) => res.send('This is Akshat from department of Information Technology at GNDEC'))
+// This displays the message in the homepage
+app.get('/home', (req, res) => res.send('This is Akshat from department of Information Technology at GNDEC'))
+
+
+// The app.use() function is used to mount the specified middleware function() at the path which is being specified.
+// app.use(path, callback)
+app.use("/", routes);
+
+
 
 // app.listen() used to listen connections on specified port
 app.listen(3000, () => console.log('Server running http://localhost:3000'))
