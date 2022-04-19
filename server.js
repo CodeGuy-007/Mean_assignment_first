@@ -37,12 +37,12 @@ express.static(path.join(__dirname, "node_modules/jquery/dist"))
 // two parameters one is request and resopnse
 // in the function we are calling the send method of response 
 // This displays the message in the homepage
-app.get('/home', (req, res) => res.send('This is Akshat from department of Information Technology at GNDEC'))
+// app.get('/', (req, res) => res.send('This is Akshat from department of Information Technology at GNDEC'))
 
 
 // The app.use() function is used to mount the specified middleware function() at the path which is being specified.
 // app.use(path, callback)
-app.use("/", routes);
+app.use("/home", routes);
 
 
 

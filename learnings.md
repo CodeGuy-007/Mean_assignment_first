@@ -1,0 +1,2 @@
+#Mongoose: Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment.
+#Mongoose acts as a front end to MongoDB, an open source NoSQL database that uses a document-oriented data model. A "collection" of "documents" in a MongoDB database is analogous to a "table" of "rows" in a relational database.
