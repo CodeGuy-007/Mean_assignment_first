@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "test",
-    "dev": "nodemon --watch src /server.js"
+    "dev": "nodemon --watch /server.js"
   },
   "keywords": [
     "MEAN",
