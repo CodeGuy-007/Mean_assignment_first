@@ -24,21 +24,7 @@
 //    db.on('error', function(){
 //     console.log(err);
 //    }); 
-// // Adding Bootstrap css path
-// app.use(
-// "/css",
-// express.static(path.join(__dirname, "node_modules/bootstrap/dist/css"))
-// );
-// // Adding Bootstrap js path
-// app.use(
-// "/js",
-// express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
-// );
-// // Adding Jquery path in node_modules
-// app.use(
-// "/js",
-// express.static(path.join(__dirname, "node_modules/jquery/dist"))
-// );
+
 
 // // this is one of the methods used in routing
 // // the other important method is called post
@@ -67,23 +53,52 @@
 const express = require('express');
 const app = express();
 var mongoose = require('mongoose');
+const router = require(__dirname + '/routes')
+const path = require('path')
 //var methodOverride = require('method-override');
 // set our port
 const port = 7000;
+// Adding Bootstrap css path
+app.use(
+"/css",
+express.static(path.join(__dirname, "node_modules/bootstrap/dist/css"))
+);
+// Adding Bootstrap js path
+app.use(
+"/js",
+express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
+);
+// Adding Jquery path in node_modules
+app.use(
+"/js",
+express.static(path.join(__dirname, "node_modules/jquery/dist"))
+);
 // configuration ===========================================
 
 // override with the X-HTTP-Method-Override header in the request.
 //app.use(methodOverride('X-HTTP-Method-Override')); //simulate DELETE/PUT
 
 // set the static files location /public/img will be /img for users
+// use the following code to serve images, CSS files, and JavaScript files in a directory named public:
 app.use(express.static(__dirname + '/public'));
-
+app.use('/', router)
 
 // config files
 // var db = require('./config/db');
 // console.log("connecting--",db);
-// mongoose.connect(db.url); //Mongoose connection created
+mongoose.connect('mongodb://localhost/test');
+const db = mongoose.connection;
 
+// Check for DB connection
+db.once('open', () => {
+  console.log("Connected to MongoDB successfully!");
+ });
+ db.on('error', () => {
+  console.log(err);
+ });
+
+
+ 
 // frontend routes =========================================================
 //app.get('/', (req, res) => res.send('Welcome to Mean Project!'));
 
@@ -95,20 +110,20 @@ app.use(express.static(__dirname + '/public'));
 // sample api route
 // grab the student model we just created
 // var Student = require('./app/models/student');
-app.get('/api/students', function(req, res) {
-   // use mongoose to get all students in the database
-   Student.find(function(err, students) {
-      // if there is an error retrieving, send the error.
-      // nothing after res.send(err) will execute
-      if (err)
-         res.send(err);
-      res.json(students); // return all students in JSON format
-   });
-});
+// app.get('/api/students', function(req, res) {
+//    // use mongoose to get all students in the database
+//    Student.find(function(err, students) {
+//       // if there is an error retrieving, send the error.
+//       // nothing after res.send(err) will execute
+//       if (err)
+//          res.send(err);
+//       res.json(students); // return all students in JSON format
+//    });
+// });
 
 
 
-// startup our app at http://localhost:3000
+// startup our app at http://localhost:7000
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 
